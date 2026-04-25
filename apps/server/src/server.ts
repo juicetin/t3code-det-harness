@@ -76,6 +76,19 @@ import {
   orchestrationDispatchRouteLayer,
   orchestrationSnapshotRouteLayer,
 } from "./orchestration/http.ts";
+import {
+  harnessApproveBatchRouteLayer,
+  harnessCompleteBatchRouteLayer,
+  harnessDashboardRouteLayer,
+  harnessDecideApprovalRouteLayer,
+  harnessFailBatchRouteLayer,
+  harnessOverrideBatchRouteLayer,
+  harnessRunSnapshotRouteLayer,
+  harnessStartBatchRouteLayer,
+  harnessStartRunRouteLayer,
+  harnessSubmitArtifactRouteLayer,
+  harnessWorkflowGraphRouteLayer,
+} from "./harness/http.ts";
 import { NetService } from "@t3tools/shared/Net";
 
 const PtyAdapterLive = Layer.unwrap(
@@ -263,6 +276,17 @@ export const makeRoutesLayer = Layer.mergeAll(
   authSessionRouteLayer,
   authWebSocketTokenRouteLayer,
   attachmentsRouteLayer,
+  harnessApproveBatchRouteLayer,
+  harnessCompleteBatchRouteLayer,
+  harnessDashboardRouteLayer,
+  harnessDecideApprovalRouteLayer,
+  harnessFailBatchRouteLayer,
+  harnessOverrideBatchRouteLayer,
+  harnessRunSnapshotRouteLayer,
+  harnessStartBatchRouteLayer,
+  harnessStartRunRouteLayer,
+  harnessSubmitArtifactRouteLayer,
+  harnessWorkflowGraphRouteLayer,
   orchestrationDispatchRouteLayer,
   orchestrationSnapshotRouteLayer,
   otlpTracesProxyRouteLayer,
