@@ -95,6 +95,12 @@ function HarnessRouteView() {
               <p className="mt-1 text-muted-foreground">
                 {active.run.status} at {active.run.stage}
               </p>
+              <p className="mt-2 text-xs text-muted-foreground">
+                Lane: <span className="font-medium text-foreground">{active.workflow.lane}</span>
+              </p>
+              <p className="mt-1 text-xs text-muted-foreground">
+                Overlays: {active.workflow.overlays.join(", ") || "none"}
+              </p>
             </div>
           ) : null}
         </div>
@@ -125,6 +131,21 @@ function HarnessRouteView() {
           </div>
 
           <div className="flex flex-col gap-4">
+            <section className="rounded-2xl border border-border bg-card p-5">
+              <h2 className="text-lg font-semibold">Selected workflow</h2>
+              <p className="mt-2 text-sm text-muted-foreground">
+                The daemon selected <span className="font-medium text-foreground">{active.workflow.lane}</span>
+                {active.workflow.overlays.length > 0
+                  ? ` with ${active.workflow.overlays.join(", ")} overlay(s).`
+                  : " with no risk overlays."}
+              </p>
+              {active.workflow.skippedStages.length > 0 ? (
+                <p className="mt-2 text-xs text-muted-foreground">
+                  Skipped by lane: {active.workflow.skippedStages.join(", ")}
+                </p>
+              ) : null}
+            </section>
+
             <section className="rounded-2xl border border-border bg-card p-5">
               <h2 className="text-lg font-semibold">Workflow graph</h2>
               <div className="mt-4 grid gap-2 md:grid-cols-2 xl:grid-cols-3">
@@ -195,4 +216,3 @@ function HarnessRouteView() {
     </main>
   );
 }
-

@@ -88,6 +88,15 @@ export const HarnessStageNode = Schema.Struct({
 });
 export type HarnessStageNode = typeof HarnessStageNode.Type;
 
+export const HarnessWorkflowSummary = Schema.Struct({
+  path: TrimmedNonEmptyString,
+  lane: TrimmedNonEmptyString,
+  overlays: Schema.Array(TrimmedNonEmptyString),
+  stages: Schema.Array(TrimmedNonEmptyString),
+  skippedStages: Schema.Array(TrimmedNonEmptyString),
+});
+export type HarnessWorkflowSummary = typeof HarnessWorkflowSummary.Type;
+
 export const HarnessWorkflowGraphNode = Schema.Struct({
   id: TrimmedNonEmptyString,
   label: TrimmedNonEmptyString,
@@ -156,6 +165,7 @@ export type HarnessQualityResult = typeof HarnessQualityResult.Type;
 
 export const HarnessRunSnapshot = Schema.Struct({
   run: HarnessRunSummary,
+  workflow: HarnessWorkflowSummary,
   stages: Schema.Array(HarnessStageNode),
   artifacts: Schema.Array(HarnessArtifactSummary),
   approvals: Schema.Array(HarnessApprovalSummary),
